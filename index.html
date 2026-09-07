@@ -86,7 +86,7 @@
             transition: width 0.2s;
         }
 
-        /* HEADER */
+        /* HEADER RÉTRACTABLE */
         header {
             background-color: rgba(11, 15, 25, 0.95);
             backdrop-filter: blur(10px);
@@ -99,6 +99,11 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
         }
 
         .logo-container {
@@ -882,6 +887,22 @@
         });
         backToTop.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        // HEADER RÉTRACTABLE : Le menu disparaît quand on scrolle
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
         });
 
         // Animation des cartes services au scroll

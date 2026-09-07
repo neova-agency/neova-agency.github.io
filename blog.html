@@ -39,7 +39,7 @@
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* HEADER */
+        /* HEADER RÉTRACTABLE */
         header {
             background-color: rgba(11, 15, 25, 0.95);
             backdrop-filter: blur(10px);
@@ -52,6 +52,11 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 1rem;
+            transition: transform 0.3s ease;
+        }
+
+        header.hidden {
+            transform: translateY(-100%);
         }
 
         .logo-container {
@@ -398,6 +403,22 @@
 
         // Charger les articles
         loadBlogPosts();
+
+        // HEADER RÉTRACTABLE
+        let lastScrollTop = 0;
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            
+            if (scrollTop > lastScrollTop && scrollTop > 100) {
+                header.classList.add('hidden');
+            } else {
+                header.classList.remove('hidden');
+            }
+            
+            lastScrollTop = scrollTop;
+        });
 
         // MENU BURGER
         function toggleMenu() {
