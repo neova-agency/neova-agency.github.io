@@ -59,6 +59,12 @@
             transform: translateY(-100%);
         }
 
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
         .logo-container {
             display: flex;
             align-items: center;
@@ -126,7 +132,26 @@
 
         @media (max-width: 768px) {
             header {
-                position: relative;
+                flex-direction: column;
+                align-items: center;
+                padding: 1rem 5%;
+            }
+
+            .header-left {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .contact-info-top {
+                width: 100%;
+                justify-content: center;
+                flex-direction: row;
+                gap: 15px;
+                margin-top: 10px;
+            }
+
+            .menu-toggle {
+                display: block;
             }
 
             nav ul {
@@ -144,17 +169,6 @@
 
             nav ul.open {
                 display: flex;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .contact-info-top {
-                flex-direction: column;
-                gap: 5px;
-                width: 100%;
-                align-items: center;
             }
         }
 
@@ -270,16 +284,20 @@
 <body>
 
     <header>
-        <div class="logo-container">
-            <img src="logo NEOVA/logo.jpg" alt="Logo NEOVA" class="logo-img">
-            <div class="logo-text">NEOVA</div>
+        <div class="header-left">
+            <div class="logo-container">
+                <img src="logo NEOVA/logo.jpg" alt="Logo NEOVA" class="logo-img">
+                <div class="logo-text">NEOVA</div>
+            </div>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
         </div>
+
         <div class="contact-info-top">
             <a href="tel:+261372047086">📞 037 20 47 086</a>
             <a href="https://wa.me/261379661485" target="_blank">💬 WhatsApp</a>
         </div>
+
         <nav>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <ul id="nav-menu">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="index.html#services">Services</a></li>
