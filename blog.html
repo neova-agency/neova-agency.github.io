@@ -108,6 +108,51 @@
             border-bottom: 2px solid var(--primary-color);
         }
 
+        /* MENU BURGER (MOBILE) */
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                position: relative;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background-color: var(--bg-dark);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            }
+
+            nav ul.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .contact-info-top {
+                flex-direction: column;
+                gap: 5px;
+                width: 100%;
+                align-items: center;
+            }
+        }
+
         /* MAIN CONTENT */
         .blog-container {
             max-width: 1200px;
@@ -213,8 +258,6 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 1rem; }
-            nav ul { margin-top: 1rem; flex-direction: column; align-items: center; gap: 1rem; }
             .blog-title { font-size: 2rem; }
         }
     </style>
@@ -231,7 +274,8 @@
             <a href="https://wa.me/261379661485" target="_blank">💬 WhatsApp</a>
         </div>
         <nav>
-            <ul>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
                 <li><a href="index.html">Accueil</a></li>
                 <li><a href="index.html#services">Services</a></li>
                 <li><a href="index.html#process">Notre Process</a></li>
@@ -303,7 +347,7 @@
                             <h3>${post.titre}</h3>
                             <p>${post.description || ''}</p>
                             <p class="blog-author">Par ${post.auteur || 'NEOVA'}</p>
-                            <a href="article.html?titre=${encodeURIComponent(post.titre)}&date=${encodeURIComponent(post.date)}&image=${encodeURIComponent(post.image)}&contenu=${encodeURIComponent(post.contenu || '')}&categorie=${encodeURIComponent(post.categorie || '')}&auteur=${encodeURIComponent(post.auteur || '')}&description=${encodeURIComponent(post.description || '')}" style="color:var(--primary-color)">Lire la suite &rarr;</a>
+                            <a href="article.html?titre=${encodeURIComponent(post.titre)}" style="color:var(--primary-color)">Lire la suite &rarr;</a>
                         </div>
                     `;
                     blogGrid.appendChild(article);
@@ -354,6 +398,18 @@
 
         // Charger les articles
         loadBlogPosts();
+
+        // MENU BURGER
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('open');
+        }
+
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('open');
+            });
+        });
     </script>
 </body>
 </html>

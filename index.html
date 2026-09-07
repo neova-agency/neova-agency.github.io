@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="google-site-verification" content="yuo90K-zJLo-XxAUDbU8ugVgtqQyLbDd1fNq4EXkDmI" />
+    <meta name="google-site-verification" content="yuo90K-zlLo-XXAUDBuBuvGtqOyLbDd1fNq4EXkDmI" />
     
     <title>NEOVA | Agence IA, Cybersécurité, Vidéo & Contenu - International</title>
     <meta name="description" content="NEOVA, votre agence de services numériques à Antananarivo et à l'international. Automatisation & IA, Cybersécurité, Montage Vidéo, Création de Contenu. Réactifs 24/24, tarifs abordables.">
@@ -153,6 +153,51 @@
         nav a:hover, nav a.active {
             color: var(--primary-color);
             border-bottom: 2px solid var(--primary-color);
+        }
+
+        /* MENU BURGER (MOBILE) */
+        .menu-toggle {
+            display: none;
+            font-size: 2rem;
+            cursor: pointer;
+            color: var(--primary-color);
+            background: none;
+            border: none;
+            z-index: 1001;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                position: relative;
+            }
+
+            nav ul {
+                display: none;
+                flex-direction: column;
+                align-items: center;
+                background-color: var(--bg-dark);
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                padding: 1rem 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            }
+
+            nav ul.open {
+                display: flex;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .contact-info-top {
+                flex-direction: column;
+                gap: 5px;
+                width: 100%;
+                align-items: center;
+            }
         }
 
         /* HERO */
@@ -554,9 +599,6 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            header { flex-direction: column; gap: 1rem; }
-            .contact-info-top { flex-direction: column; gap: 5px; }
-            nav ul { margin-top: 1rem; flex-direction: column; align-items: center; gap: 1rem; }
             #hero h1 { font-size: 2.5rem; }
             .about-content { flex-direction: column; }
             .process-step:nth-child(odd) { margin-top: 0; }
@@ -577,7 +619,8 @@
             <a href="https://wa.me/261379661485" target="_blank">💬 WhatsApp</a>
         </div>
         <nav>
-            <ul>
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+            <ul id="nav-menu">
                 <li><a href="#hero" class="active">Accueil</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#process">Notre Process</a></li>
@@ -863,6 +906,19 @@
         }, { threshold: 0.1 });
         processSteps.forEach(step => processObserver.observe(step));
 
+        // MENU BURGER
+        function toggleMenu() {
+            const navMenu = document.getElementById('nav-menu');
+            navMenu.classList.toggle('open');
+        }
+
+        // Fermer le menu quand on clique sur un lien
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('open');
+            });
+        });
+
         // Système de blog dynamique via SheetDB (Page d'accueil : seulement les 3 derniers)
         async function loadBlogPosts() {
             try {
@@ -890,7 +946,7 @@
                             <div class="blog-date">${post.date}</div>
                             <h3>${post.titre}</h3>
                             <p>${summary}</p>
-                            <a href="article.html?titre=${encodeURIComponent(post.titre)}&date=${encodeURIComponent(post.date)}&image=${encodeURIComponent(post.image)}&contenu=${encodeURIComponent(post.contenu || '')}&categorie=${encodeURIComponent(post.categorie || '')}&auteur=${encodeURIComponent(post.auteur || '')}&description=${encodeURIComponent(post.description || '')}" style="color:var(--primary-color)">Lire la suite &rarr;</a>
+                            <a href="article.html?titre=${encodeURIComponent(post.titre)}" style="color:var(--primary-color)">Lire la suite &rarr;</a>
                         </div>
                     `;
                     blogGrid.appendChild(article);
