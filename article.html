@@ -37,7 +37,7 @@
 
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
-        /* HEADER RÉTRACTABLE */
+        /* HEADER */
         header {
             background-color: rgba(11, 15, 25, 0.95);
             backdrop-filter: blur(10px);
@@ -46,19 +46,7 @@
             z-index: 1000;
             padding: 1rem 5%;
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            transition: transform 0.3s ease;
-        }
-
-        header.hidden {
-            transform: translateY(-100%);
-        }
-
-        .header-left {
-            display: flex;
+            justify-content: center;
             align-items: center;
             gap: 15px;
         }
@@ -70,7 +58,7 @@
         }
 
         .logo-img {
-            width: 60px;
+            width: 40px;
             height: auto;
             filter: drop-shadow(0 0 10px var(--primary-color));
             animation: logoPulse 2s infinite alternate;
@@ -83,76 +71,65 @@
 
         .logo-text {
             font-family: 'Oswald', sans-serif;
-            font-size: 2rem;
+            font-size: 1.8rem;
             font-weight: 700;
             color: white;
             letter-spacing: 2px;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-        }
-
-        /* MENU BURGER (MOBILE) */
         .menu-toggle {
-            display: none;
+            display: block;
             font-size: 2rem;
             cursor: pointer;
             color: var(--primary-color);
             background: none;
             border: none;
-            z-index: 1001;
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                align-items: center;
-                padding: 1rem 5%;
-            }
+        .contact-info-top {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            font-size: 0.9rem;
+        }
 
-            .header-left {
-                width: 100%;
-                justify-content: space-between;
-            }
+        .contact-info-top a {
+            color: var(--primary-color);
+            font-weight: bold;
+        }
 
-            .contact-info-top {
-                width: 100%;
-                justify-content: center;
-                flex-direction: row;
-                gap: 15px;
-                margin-top: 10px;
-            }
+        /* NAVIGATION OVERLAY */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            z-index: 999;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5rem;
+        }
 
-            .menu-toggle {
-                display: block;
-            }
+        .nav-overlay.open {
+            display: flex;
+        }
 
-            nav ul {
-                display: none;
-                flex-direction: column;
-                align-items: center;
-                background-color: var(--bg-dark);
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                padding: 1rem 0;
-                box-shadow: 0 5px 10px rgba(0,0,0,0.3);
-            }
+        .nav-overlay a {
+            color: white;
+            font-size: 1.5rem;
+            font-weight: bold;
+            font-family: 'Oswald', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: color 0.3s;
+        }
 
-            nav ul.open {
-                display: flex;
-            }
+        .nav-overlay a:hover {
+            color: var(--primary-color);
         }
 
         /* ARTICLE CONTENT */
@@ -260,31 +237,26 @@
 <body>
 
     <header>
-        <div class="header-left">
-            <div class="logo-container">
-                <img src="logo NEOVA/logo.jpg" alt="Logo NEOVA" class="logo-img">
-                <div class="logo-text">NEOVA</div>
-            </div>
-            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        <div class="logo-container">
+            <img src="logo NEOVA/logo.jpg" alt="Logo NEOVA" class="logo-img">
+            <div class="logo-text">NEOVA</div>
         </div>
-
         <div class="contact-info-top">
-            <a href="tel:+261372047086">📞 037 20 47 086</a>
             <a href="https://wa.me/261379661485" target="_blank">💬 WhatsApp</a>
         </div>
-
-        <nav>
-            <ul id="nav-menu">
-                <li><a href="index.html">Accueil</a></li>
-                <li><a href="index.html#services">Services</a></li>
-                <li><a href="index.html#process">Notre Process</a></li>
-                <li><a href="index.html#about">Pourquoi nous</a></li>
-                <li><a href="index.html#testimonials">Avis</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><a href="index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
     </header>
+
+    <!-- Menu overlay vertical -->
+    <div class="nav-overlay" id="nav-overlay">
+        <a href="index.html">Accueil</a>
+        <a href="index.html#services">Services</a>
+        <a href="index.html#process">Notre Process</a>
+        <a href="index.html#about">Pourquoi nous</a>
+        <a href="index.html#testimonials">Avis</a>
+        <a href="blog.html">Blog</a>
+        <a href="index.html#contact">Contact</a>
+    </div>
 
     <main class="article-container" id="articleContent">
         <!-- Le contenu de l'article s'affichera ici -->
@@ -376,31 +348,15 @@
         // Charger l'article
         getArticle();
 
-        // HEADER RÉTRACTABLE
-        let lastScrollTop = 0;
-        const header = document.querySelector('header');
-
-        window.addEventListener('scroll', () => {
-            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-            
-            if (scrollTop > lastScrollTop && scrollTop > 100) {
-                header.classList.add('hidden');
-            } else {
-                header.classList.remove('hidden');
-            }
-            
-            lastScrollTop = scrollTop;
-        });
-
         // MENU BURGER
         function toggleMenu() {
-            const navMenu = document.getElementById('nav-menu');
-            navMenu.classList.toggle('open');
+            const overlay = document.getElementById('nav-overlay');
+            overlay.classList.toggle('open');
         }
 
-        document.querySelectorAll('#nav-menu a').forEach(link => {
+        document.querySelectorAll('#nav-overlay a').forEach(link => {
             link.addEventListener('click', () => {
-                document.getElementById('nav-menu').classList.remove('open');
+                document.getElementById('nav-overlay').classList.remove('open');
             });
         });
     </script>
