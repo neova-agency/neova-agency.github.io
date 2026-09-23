@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <title>Blog | NEOVA - Agence IA, Cybersécurité, Vidéo & Contenu</title>
-    <meta name="description" content="Consultez les articles du blog NEOVA : IA, Cybersécurité, Montage Vidéo, Création de Contenu.">
-    <meta name="keywords" content="NEOVA, blog, IA, cybersécurité, montage vidéo, création de contenu, Antananarivo">
+    <title>Blog | NEOVA Boost - Automatisation & IA</title>
+    <meta name="description" content="Consultez les articles du blog NEOVA Boost : automatisation, IA, gain de temps.">
+    <meta name="keywords" content="NEOVA Boost, blog, automatisation, IA, Antananarivo">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,11 +14,12 @@
     
     <style>
         :root {
-            --primary-color: #00F2EA;
-            --secondary-color: #4FACFE;
-            --bg-dark: #0B0F19;
-            --bg-lighter: #1A2035;
-            --text-color: #E2E8F0;
+            --primary-color: #7C3AED;
+            --secondary-color: #06B6D4;
+            --bg-dark: #0A0E1A;
+            --bg-lighter: #131A2E;
+            --text-color: #F1F5F9;
+            --text-secondary: #94A3B8;
         }
 
         * { box-sizing: border-box; }
@@ -32,16 +33,12 @@
             line-height: 1.6;
         }
 
-        h1, h2, h3, h4 {
-            font-family: 'Oswald', sans-serif;
-            text-transform: uppercase;
-        }
-
+        h1, h2, h3, h4 { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
         a { text-decoration: none; color: inherit; transition: 0.3s; }
 
         /* HEADER */
         header {
-            background-color: rgba(11, 15, 25, 0.95);
+            background-color: rgba(10, 14, 26, 0.95);
             backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
@@ -53,17 +50,8 @@
             gap: 20px;
         }
 
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-container {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
+        .header-left { display: flex; align-items: center; gap: 15px; }
+        .logo-container { display: flex; align-items: center; gap: 10px; }
 
         .logo-img {
             width: 40px;
@@ -84,18 +72,10 @@
             color: white;
             letter-spacing: 2px;
         }
+        .logo-text span { color: var(--secondary-color); }
 
-        .contact-info-top {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-            font-size: 0.9rem;
-        }
-
-        .contact-info-top a {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
+        .contact-info-top { display: flex; gap: 10px; align-items: center; font-size: 0.9rem; }
+        .contact-info-top a { color: var(--secondary-color); font-weight: bold; }
 
         .menu-toggle {
             display: none;
@@ -106,19 +86,8 @@
             border: none;
         }
 
-        /* NAVIGATION DESKTOP */
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 1.5rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        nav a:hover, nav a.active {
-            color: var(--primary-color);
-            border-bottom: 2px solid var(--primary-color);
-        }
+        nav ul { list-style: none; display: flex; gap: 1.5rem; margin: 0; padding: 0; }
+        nav a:hover, nav a.active { color: var(--secondary-color); border-bottom: 2px solid var(--secondary-color); }
 
         /* NAVIGATION OVERLAY (MOBILE) */
         .nav-overlay {
@@ -127,7 +96,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(10, 14, 26, 0.98);
             z-index: 999;
             display: none;
             flex-direction: column;
@@ -135,11 +104,7 @@
             justify-content: center;
             gap: 1.5rem;
         }
-
-        .nav-overlay.open {
-            display: flex;
-        }
-
+        .nav-overlay.open { display: flex; }
         .nav-overlay a {
             color: white;
             font-size: 1.5rem;
@@ -147,53 +112,20 @@
             font-family: 'Oswald', sans-serif;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: color 0.3s;
         }
+        .nav-overlay a:hover { color: var(--secondary-color); }
 
-        .nav-overlay a:hover {
-            color: var(--primary-color);
-        }
-
-        /* MOBILE */
         @media (max-width: 768px) {
-            header {
-                justify-content: center;
-            }
-
-            nav ul {
-                display: none;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .contact-info-top {
-                display: flex;
-                gap: 5px;
-            }
+            header { justify-content: center; }
+            nav ul { display: none; }
+            .menu-toggle { display: block; }
         }
 
         /* MAIN CONTENT */
-        .blog-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 5%;
-        }
+        .blog-container { max-width: 1200px; margin: 0 auto; padding: 4rem 5%; }
+        .blog-title { text-align: center; color: white; font-size: 3rem; margin-bottom: 2rem; }
 
-        .blog-title {
-            text-align: center;
-            color: white;
-            font-size: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        /* SEARCH & FILTERS */
-        .search-filters {
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
+        .search-filters { margin-bottom: 3rem; text-align: center; }
         .search-input {
             padding: 12px 20px;
             border-radius: 50px;
@@ -205,19 +137,9 @@
             max-width: 500px;
             margin-bottom: 1.5rem;
         }
+        .search-input:focus { outline: none; border-color: var(--secondary-color); }
 
-        .search-input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .filter-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
+        .filter-buttons { display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; }
         .filter-btn {
             padding: 10px 20px;
             border-radius: 50px;
@@ -228,59 +150,49 @@
             transition: 0.3s;
             font-size: 0.9rem;
         }
-
         .filter-btn:hover, .filter-btn.active {
-            border-color: var(--primary-color);
-            color: var(--primary-color);
+            border-color: var(--secondary-color);
+            color: var(--secondary-color);
             background-color: transparent;
         }
 
-        /* BLOG GRID */
         .blog-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
-
         .blog-post {
             background-color: var(--bg-lighter);
             border-radius: 10px;
             overflow: hidden;
             transition: transform 0.3s;
         }
-
         .blog-post:hover { transform: scale(1.02); }
-
         .blog-post img { width: 100%; height: 200px; object-fit: cover; }
         .blog-content { padding: 1.5rem; }
         .blog-date { color: var(--secondary-color); font-size: 0.9rem; margin-bottom: 0.5rem; }
-        .blog-category { 
+        .blog-category {
             display: inline-block;
             padding: 3px 10px;
             border-radius: 20px;
             background-color: var(--primary-color);
-            color: var(--bg-dark);
+            color: white;
             font-size: 0.8rem;
             font-weight: bold;
             margin-bottom: 0.5rem;
         }
-        .blog-author { color: #888; font-size: 0.8rem; margin-top: 0.5rem; }
+        .blog-author { color: var(--text-secondary); font-size: 0.8rem; margin-top: 0.5rem; }
 
-        /* FOOTER */
         footer {
             background-color: var(--bg-lighter);
             padding: 3rem 5%;
             text-align: center;
-            border-top: 1px solid #333;
+            border-top: 1px solid #1E293B;
         }
-
-        .social-icons a { color: var(--primary-color); font-size: 1.5rem; margin: 0 10px; }
+        .social-icons a { color: var(--secondary-color); font-size: 1.5rem; margin: 0 10px; }
         .social-icons a:hover { transform: scale(1.2); }
 
-        /* RESPONSIVE */
-        @media (max-width: 768px) {
-            .blog-title { font-size: 2rem; }
-        }
+        @media (max-width: 768px) { .blog-title { font-size: 2rem; } }
     </style>
 </head>
 <body>
@@ -290,18 +202,16 @@
             <button class="menu-toggle" onclick="toggleMenu()">☰</button>
             <div class="logo-container">
                 <img src="logo NEOVA/logo.jpg" alt="Logo NEOVA" class="logo-img">
-                <div class="logo-text">NEOVA</div>
+                <div class="logo-text">NEOVA <span>Boost</span></div>
             </div>
         </div>
-
         <div class="contact-info-top">
             <a href="https://wa.me/261379661485" target="_blank">💬 WhatsApp</a>
         </div>
-
         <nav>
-            <ul id="nav-menu">
+            <ul>
                 <li><a href="index.html">Accueil</a></li>
-                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#services">Automatisations</a></li>
                 <li><a href="index.html#process">Notre Process</a></li>
                 <li><a href="index.html#about">Pourquoi nous</a></li>
                 <li><a href="index.html#testimonials">Avis</a></li>
@@ -311,10 +221,9 @@
         </nav>
     </header>
 
-    <!-- Menu overlay vertical (mobile) -->
     <div class="nav-overlay" id="nav-overlay">
         <a href="index.html">Accueil</a>
-        <a href="index.html#services">Services</a>
+        <a href="index.html#services">Automatisations</a>
         <a href="index.html#process">Notre Process</a>
         <a href="index.html#about">Pourquoi nous</a>
         <a href="index.html#testimonials">Avis</a>
@@ -329,10 +238,10 @@
             <input type="text" class="search-input" id="searchInput" placeholder="Rechercher un article...">
             <div class="filter-buttons" id="filterButtons">
                 <button class="filter-btn active" data-category="all">Tous</button>
+                <button class="filter-btn" data-category="Automatisation">Automatisation</button>
                 <button class="filter-btn" data-category="IA">IA</button>
-                <button class="filter-btn" data-category="Cybersécurité">Cybersécurité</button>
-                <button class="filter-btn" data-category="Montage Vidéo">Montage Vidéo</button>
-                <button class="filter-btn" data-category="Création de Contenu">Création de Contenu</button>
+                <button class="filter-btn" data-category="Productivité">Productivité</button>
+                <button class="filter-btn" data-category="Business">Business</button>
             </div>
         </div>
 
@@ -342,7 +251,7 @@
     </main>
 
     <footer>
-        <div class="logo-text" style="font-size:1.5rem; margin-bottom:1rem;">NEOVA</div>
+        <div class="logo-text" style="font-size:1.5rem; margin-bottom:1rem;">NEOVA <span>Boost</span></div>
         <p>Antananarivo, Madagascar</p>
         <p>Téléphone / WhatsApp : <strong>037 20 47 086</strong> / <strong>037 96 61 485</strong></p>
         <p>Email : <strong>neovaentreprises@gmail.com</strong></p>
@@ -351,17 +260,15 @@
             <a href="#">LinkedIn</a>
             <a href="https://wa.me/261379661485" target="_blank">WhatsApp</a>
         </div>
-        <p style="margin-top:2rem; font-size:0.8rem; color:#888;">&copy; 2026 NEOVA. Tous droits réservés.</p>
+        <p style="margin-top:2rem; font-size:0.8rem; color:#888;">&copy; 2026 NEOVA Boost. Tous droits réservés.</p>
     </footer>
 
     <script>
-        // Charger et afficher les articles
         async function loadBlogPosts() {
             try {
                 const response = await fetch('https://sheetdb.io/api/v1/6wzg9224zsejp');
                 const posts = await response.json();
                 
-                // Trier par date (les plus récents en premier)
                 posts.sort((a, b) => new Date(b.date) - new Date(a.date));
 
                 const blogGrid = document.getElementById('blogGrid');
@@ -381,21 +288,19 @@
                             ${post.categorie ? `<div class="blog-category">${post.categorie}</div>` : ''}
                             <h3>${post.titre}</h3>
                             <p>${post.description || ''}</p>
-                            <p class="blog-author">Par ${post.auteur || 'NEOVA'}</p>
-                            <a href="article.html?titre=${encodeURIComponent(post.titre)}" style="color:var(--primary-color)">Lire la suite &rarr;</a>
+                            <p class="blog-author">Par ${post.auteur || 'NEOVA Boost'}</p>
+                            <a href="article.html?titre=${encodeURIComponent(post.titre)}" style="color:var(--secondary-color)">Lire la suite &rarr;</a>
                         </div>
                     `;
                     blogGrid.appendChild(article);
                 });
 
-                // Activer la recherche et les filtres
                 setupSearchAndFilters();
             } catch (error) {
                 console.error('Erreur lors du chargement des articles:', error);
             }
         }
 
-        // Recherche et filtres
         function setupSearchAndFilters() {
             const searchInput = document.getElementById('searchInput');
             const filterButtons = document.querySelectorAll('.filter-btn');
@@ -431,10 +336,8 @@
             });
         }
 
-        // Charger les articles
         loadBlogPosts();
 
-        // MENU BURGER
         function toggleMenu() {
             const overlay = document.getElementById('nav-overlay');
             overlay.classList.toggle('open');
